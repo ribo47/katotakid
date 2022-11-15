@@ -7,6 +7,7 @@ const Color blue = Color(0xFF3897F1);
 
 class KKTheme {
   final globalTheme = ThemeData(
+    backgroundColor: blue,
     textTheme: const TextTheme(
       bodyText1: TextStyle(
         fontSize: 40,
