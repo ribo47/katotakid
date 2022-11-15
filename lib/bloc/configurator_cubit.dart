@@ -8,7 +8,6 @@ class ConfiguratorCubit extends Cubit<ConfiguratorState> {
   void init() {}
 
   void changePage() {
-    print(state.page);
-    emit(state.copyWith(page: 2));
+    emit(state.copyWith(page: state.page == 0 ? 1 : 0));
   }
 }
