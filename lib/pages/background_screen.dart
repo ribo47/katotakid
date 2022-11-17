@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/bloc/configurator_state.dart';
 
 import '../bloc/configurator_cubit.dart';
+import '../utilty/bubbles.dart';
 import '../utilty/theme.dart';
 
 class BackgroundScreen extends StatelessWidget {
@@ -51,20 +52,19 @@ class BackgroundScreen extends StatelessWidget {
             ),
           ),
           AnimatedPositioned(
-            top: -475,
-            left: 29,
+            top: 0,
+            right: 0,
             duration: const Duration(milliseconds: 700),
             curve: Curves.decelerate,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 700),
               curve: Curves.decelerate,
-              width: 736,
-              height: 736,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(350),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    getBubbleName(Bubbles.topRight1),
+                  ),
                 ),
-                color: Colors.white,
               ),
             ),
           )
@@ -90,20 +90,20 @@ class BackgroundScreen extends StatelessWidget {
             ),
           ),
           AnimatedPositioned(
-            top: -53,
-            left: 31,
+            top: 0,
+            right: 0,
             duration: const Duration(milliseconds: 700),
             curve: Curves.decelerate,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 700),
               curve: Curves.decelerate,
-              width: 195,
-              height: 195,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(100),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                image: DecorationImage(
+                  image: AssetImage(
+                    getBubbleName(Bubbles.topRight1),
+                  ),
                 ),
-                color: Colors.white,
               ),
             ),
           )
