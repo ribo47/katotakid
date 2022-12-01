@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const WelcomePage(),
         '/menu': (context) => const MenuPage(),
+        '/action': (context) => const MenuPage(),
+        '/head': (context) => const MenuPage(),
+        '/clothing': (context) => const MenuPage(),
       },
     );
   }

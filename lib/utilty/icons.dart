@@ -3,12 +3,14 @@ import 'package:flutter_svg/svg.dart';
 
 class KKIcon extends StatelessWidget {
   final KKIcons iconName;
-  const KKIcon({Key? key, required this.iconName}) : super(key: key);
+  final Color? color;
+  const KKIcon({Key? key, required this.iconName, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       _getAssetName(),
+      color: color ?? Colors.white,
     );
   }
 
