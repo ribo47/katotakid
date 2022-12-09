@@ -153,6 +153,7 @@ class TotalPage extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: 400,
@@ -168,9 +169,16 @@ class TotalPage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              width: 10,
+            ),
             InkWell(
               onTap: () => print('ahahhahaha'),
-              child: const KKIcon(iconName: KKIcons.rightChevron),
+              hoverColor: Colors.transparent,
+              child: Image.asset(
+                getAssetName(KKIcons.rightChevron),
+                height: 40,
+              ),
             ),
           ],
         )

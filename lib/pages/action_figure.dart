@@ -21,7 +21,7 @@ class ActionFigurePage extends StatelessWidget {
       backgroundColor: KKTheme().globalTheme.backgroundColor,
       bottomNavigationBar: AddOtherBottom(
         firstText: KKStrings.addClothing.tr(),
-        firstCallback: () => Navigator.pushNamed(context, '/main'),
+        firstCallback: () => Navigator.pushNamed(context, '/head'),
         secondText: KKStrings.addExtra3dHeads.tr(),
         secondCallback: () => Navigator.pushNamed(context, '/head'),
       ),
