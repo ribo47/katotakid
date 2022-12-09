@@ -15,7 +15,18 @@ class KKIcon extends StatelessWidget {
   }
 }
 
-enum KKIcons { burgerMenu, cart, fullFigure, head, kkLogo, tshirt, fullBody, paintings, prints }
+enum KKIcons {
+  burgerMenu,
+  cart,
+  fullFigure,
+  head,
+  kkLogo,
+  tshirt,
+  fullBody,
+  paintings,
+  prints,
+  rightChevron,
+}
 
 String getAssetName(KKIcons iconName) {
   switch (iconName) {
@@ -37,5 +48,7 @@ String getAssetName(KKIcons iconName) {
       return "assets/images/painting.png";
     case KKIcons.prints:
       return "assets/images/prints.png";
+    case KKIcons.rightChevron:
+      return "assets/images/right_chevron.png";
   }
 }

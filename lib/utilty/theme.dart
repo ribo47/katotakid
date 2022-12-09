@@ -4,6 +4,7 @@ const Color white = Color(0xFFFFFFFF);
 const Color grey = Color(0xFFBDBDBD);
 const Color lightBlue = Color(0xFF73CCFF);
 const Color blue = Color(0xFF3897F1);
+const Color black = Color(0xFF474747);
 
 class KKTheme {
   final globalTheme = ThemeData(

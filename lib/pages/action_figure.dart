@@ -28,7 +28,7 @@ class ActionFigurePage extends StatelessWidget {
       body: BlocProvider(
         create: (_) => ConfiguratorCubit(),
         child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
-          builder: (_, state) {
+          builder: (context, state) {
             return Stack(
               children: [
                 ...getBackgroundBubbles(Pages.head, context),

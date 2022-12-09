@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:katotakid/pages/action_figure.dart';
 import 'package:katotakid/pages/head.dart';
 import 'package:katotakid/pages/menu_page.dart';
+import 'package:katotakid/pages/total.dart';
 import 'package:katotakid/pages/welcome_page.dart';
 
 Future<void> main() async {
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/action': (context) => const ActionFigurePage(),
         '/head': (context) => const HeadPage(),
         '/clothing': (context) => const MenuPage(),
+        '/total': (context) => const TotalPage(),
       },
     );
   }
