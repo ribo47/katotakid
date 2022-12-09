@@ -23,7 +23,12 @@ class AddSubWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        if (image != null) Image.asset(image!),
+        if (image != null)
+          Container(
+            height: 200,
+            margin: const EdgeInsets.only(bottom: 20),
+            child: Image.asset(image!),
+          ),
         Container(
           decoration: BoxDecoration(
             color: white,
@@ -56,11 +61,15 @@ class AddSubWidget extends StatelessWidget {
                 width: 50,
                 height: 150,
               ),
-              Text(
-                value.toString(),
-                style: const TextStyle(
-                  color: grey,
-                  fontSize: 86,
+              SizedBox(
+                width: 60,
+                child: Text(
+                  value.toString(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: grey,
+                    fontSize: 86,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -94,7 +103,7 @@ class AddSubWidget extends StatelessWidget {
           ),
         ),
         Text(
-          price.toString(),
+          '$price €',
           style: const TextStyle(
             color: white,
             fontSize: 40,

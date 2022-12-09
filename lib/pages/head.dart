@@ -23,8 +23,8 @@ class HeadPage extends StatelessWidget {
       bottomNavigationBar: AddOtherBottom(
           firstText: KKStrings.addClothing.tr(),
           firstCallback: () {},
-          secondText: KKStrings.addExtra3dHeads.tr(),
-          secondCallback: () {}),
+          secondText: KKStrings.addFullBody.tr(),
+          secondCallback: () => Navigator.pushNamed(context, '/action')),
       body: BlocProvider(
         create: (_) => ConfiguratorCubit(),
         child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(

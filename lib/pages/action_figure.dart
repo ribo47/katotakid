@@ -22,8 +22,8 @@ class ActionFigurePage extends StatelessWidget {
       bottomNavigationBar: AddOtherBottom(
         firstText: KKStrings.addClothing.tr(),
         firstCallback: () => Navigator.pushNamed(context, '/main'),
-        secondText: KKStrings.addFullBody.tr(),
-        secondCallback: () => Navigator.pushNamed(context, '/action'),
+        secondText: KKStrings.addExtra3dHeads.tr(),
+        secondCallback: () => Navigator.pushNamed(context, '/head'),
       ),
       body: BlocProvider(
         create: (_) => ConfiguratorCubit(),

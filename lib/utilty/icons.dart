@@ -34,7 +34,7 @@ String getAssetName(KKIcons iconName) {
     case KKIcons.fullBody:
       return "assets/images/fullBody.png";
     case KKIcons.paintings:
-      return "assets/images/paintings.png";
+      return "assets/images/painting.png";
     case KKIcons.prints:
       return "assets/images/prints.png";
   }
