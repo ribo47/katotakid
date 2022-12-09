@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:katotakid/utilty/bubbles.dart';
 
@@ -18,6 +19,11 @@ class ActionFigurePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
+      bottomNavigationBar: AddOtherBottom(
+          firstText: KKStrings.addClothing.tr(),
+          firstCallback: () {},
+          secondText: KKStrings.addExtra3dHeads.tr(),
+          secondCallback: () {}),
       body: BlocProvider(
         create: (_) => ConfiguratorCubit(),
         child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(

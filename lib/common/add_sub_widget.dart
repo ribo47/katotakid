@@ -25,6 +25,14 @@ class AddSubWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: white,
             borderRadius: BorderRadius.circular(50),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x40000000),
+                offset: Offset(0, 4),
+                spreadRadius: 1,
+                blurRadius: 30,
+              ),
+            ],
           ),
           child: Row(
             children: [
