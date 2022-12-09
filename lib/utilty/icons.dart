@@ -9,27 +9,33 @@ class KKIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      _getAssetName(),
+      getAssetName(iconName),
       color: color ?? Colors.white,
     );
   }
-
-  String _getAssetName() {
-    switch (iconName) {
-      case KKIcons.burgerMenu:
-        return "assets/images/burger_menu.svg";
-      case KKIcons.cart:
-        return "assets/images/cart.svg";
-      case KKIcons.fullFigure:
-        return "assets/images/full_figure.svg";
-      case KKIcons.head:
-        return "assets/images/head.svg";
-      case KKIcons.kkLogo:
-        return "assets/images/kk_logo.svg";
-      case KKIcons.tshirt:
-        return "assets/images/tshirt.svg";
-    }
-  }
 }
 
-enum KKIcons { burgerMenu, cart, fullFigure, head, kkLogo, tshirt }
+enum KKIcons { burgerMenu, cart, fullFigure, head, kkLogo, tshirt, fullBody, paintings, prints }
+
+String getAssetName(KKIcons iconName) {
+  switch (iconName) {
+    case KKIcons.burgerMenu:
+      return "assets/images/burger_menu.svg";
+    case KKIcons.cart:
+      return "assets/images/cart.svg";
+    case KKIcons.fullFigure:
+      return "assets/images/full_figure.svg";
+    case KKIcons.head:
+      return "assets/images/head.svg";
+    case KKIcons.kkLogo:
+      return "assets/images/kk_logo.svg";
+    case KKIcons.tshirt:
+      return "assets/images/tshirt.svg";
+    case KKIcons.fullBody:
+      return "assets/images/fullBody.png";
+    case KKIcons.paintings:
+      return "assets/images/paintings.png";
+    case KKIcons.prints:
+      return "assets/images/prints.png";
+  }
+}

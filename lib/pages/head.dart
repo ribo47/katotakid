@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:katotakid/utilty/bubbles.dart';
+import 'package:katotakid/utilty/icons.dart';
 
 import '../bloc/configurator_cubit.dart';
 import '../bloc/configurator_state.dart';
@@ -12,23 +13,22 @@ import '../common/add_sub_widget.dart';
 import '../utilty/theme.dart';
 import 'background_screen.dart';
 
-class ActionFigurePage extends StatelessWidget {
-  const ActionFigurePage({Key? key}) : super(key: key);
+class HeadPage extends StatelessWidget {
+  const HeadPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
       bottomNavigationBar: AddOtherBottom(
-        firstText: KKStrings.addClothing.tr(),
-        firstCallback: () => Navigator.pushNamed(context, '/main'),
-        secondText: KKStrings.addFullBody.tr(),
-        secondCallback: () => Navigator.pushNamed(context, '/action'),
-      ),
+          firstText: KKStrings.addClothing.tr(),
+          firstCallback: () {},
+          secondText: KKStrings.addExtra3dHeads.tr(),
+          secondCallback: () {}),
       body: BlocProvider(
         create: (_) => ConfiguratorCubit(),
         child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
-          builder: (_, state) {
+          builder: (BuildContext context, state) {
             return Stack(
               children: [
                 ...getBackgroundBubbles(Pages.head, context),
@@ -56,6 +56,7 @@ class ActionFigurePage extends StatelessWidget {
           changeValue: (newValue) =>
               context.read<ConfiguratorCubit>().changeValueActionFigure(newValue, 'fullBody'),
           price: 82.68,
+          image: getAssetName(KKIcons.fullBody),
         ),
         const SizedBox(
           width: 100,
@@ -66,6 +67,7 @@ class ActionFigurePage extends StatelessWidget {
           changeValue: (newValue) =>
               context.read<ConfiguratorCubit>().changeValueActionFigure(newValue, 'prints'),
           price: 11.02,
+          image: getAssetName(KKIcons.prints),
         ),
         const SizedBox(
           width: 100,
@@ -76,6 +78,7 @@ class ActionFigurePage extends StatelessWidget {
           changeValue: (newValue) =>
               context.read<ConfiguratorCubit>().changeValueActionFigure(newValue, 'paintings'),
           price: 27.56,
+          image: getAssetName(KKIcons.paintings),
         ),
       ],
     );

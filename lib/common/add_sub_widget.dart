@@ -6,13 +6,15 @@ class AddSubWidget extends StatelessWidget {
   final String title;
   final double price;
   final Function(int) changeValue;
+  final String? image;
 
   const AddSubWidget(
       {Key? key,
       required this.value,
       required this.title,
       required this.price,
-      required this.changeValue})
+      required this.changeValue,
+      this.image})
       : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class AddSubWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        if (image != null) Image.asset(image!),
         Container(
           decoration: BoxDecoration(
             color: white,
