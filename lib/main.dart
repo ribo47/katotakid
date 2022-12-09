@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:katotakid/pages/action_figure.dart';
 import 'package:katotakid/pages/menu_page.dart';
 import 'package:katotakid/pages/welcome_page.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const WelcomePage(),
         '/menu': (context) => const MenuPage(),
-        '/action': (context) => const MenuPage(),
+        '/action': (context) => const ActionFigurePage(),
         '/head': (context) => const MenuPage(),
         '/clothing': (context) => const MenuPage(),
       },
