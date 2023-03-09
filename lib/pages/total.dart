@@ -18,23 +18,11 @@ class TotalPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
       bottomNavigationBar: const AddAllBottom(),
-      body: BlocProvider(
-        create: (_) => ConfiguratorCubit(),
-        child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
-          builder: (BuildContext context, state) {
-            return Container(
-              width: double.maxFinite,
-              height: double.maxFinite,
-              alignment: Alignment.center,
-              child: _buildBody(context, state),
-            );
-          },
-        ),
-      ),
+      body:  _buildBody(context),
     );
   }
 
-  Widget _buildBody(BuildContext context, ConfiguratorState state) {
+  Widget _buildBody(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

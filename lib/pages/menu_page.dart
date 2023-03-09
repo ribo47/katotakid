@@ -17,42 +17,30 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
-      body: BlocProvider(
-        create: (_) => ConfiguratorCubit(),
-        child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
-          builder: (BuildContext context, state) {
-            return Container(
-              width: double.maxFinite,
-              height: double.maxFinite,
-              alignment: Alignment.center,
-              child: _buildBody(context, state),
-            );
-          },
-        ),
-      ),
+      body: _buildBody(context),
     );
   }
 
-  Widget _buildBody(BuildContext context, ConfiguratorState state) {
+  Widget _buildBody(BuildContext context) {
     final size = MediaQuery.of(context).size.width * 0.22;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         MenuCard(
           icon: KKIcons.fullFigure,
-          onTap: () => Navigator.pushNamed(context, '/action'),
+          onTap: () => Navigator.pushNamed(context, '/configure'),
           size: size,
           title: KKStrings.actionFigure.tr(),
         ),
         MenuCard(
           icon: KKIcons.head,
-          onTap: () => Navigator.pushNamed(context, '/head'),
+          onTap: () => Navigator.pushNamed(context, '/configure'),
           size: size,
           title: KKStrings.headsOnly.tr(),
         ),
         MenuCard(
           icon: KKIcons.tshirt,
-          onTap: () => Navigator.pushNamed(context, '/clothing'),
+          onTap: () => Navigator.pushNamed(context, '/configure'),
           size: size,
           title: KKStrings.clothingApparel.tr(),
         ),

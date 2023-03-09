@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:katotakid/utilty/icons.dart';
 import 'package:katotakid/utilty/theme.dart';
 
 class AddSubWidget extends StatelessWidget {
@@ -6,7 +7,7 @@ class AddSubWidget extends StatelessWidget {
   final String title;
   final double price;
   final Function(int) changeValue;
-  final String? image;
+  final KKIcons? image;
 
   const AddSubWidget(
       {Key? key,
@@ -27,7 +28,7 @@ class AddSubWidget extends StatelessWidget {
           Container(
             height: 200,
             margin: const EdgeInsets.only(bottom: 20),
-            child: Image.asset(image!),
+            child: Image.asset(getAssetName(image!)),
           ),
         Container(
           decoration: BoxDecoration(

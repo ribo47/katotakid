@@ -1,9 +1,11 @@
+import 'package:katotakid/common/page_enum.dart';
+
 import '../utilty/model/action_figure_model.dart';
 import '../utilty/model/clothing_model.dart';
 import '../utilty/model/head_model.dart';
 
 class ConfiguratorState {
-  final int page;
+  final PageEnum page;
   final HeadModel headModel;
   final ClothingModel clothingModel;
   final ActionFigureModel actionFigureModel;
@@ -18,11 +20,11 @@ class ConfiguratorState {
     actionFigureModel: ActionFigureModel(fullBody: 0, paintings: 0, prints: 0),
     clothingModel: ClothingModel(),
     headModel: HeadModel(prints: 0, paintings: 0, fullBody: 0),
-    page: 0,
+    page: PageEnum.actionFigure,
   );
 
   ConfiguratorState copyWith({
-    int? page,
+    PageEnum? page,
     HeadModel? headModel,
     ClothingModel? clothingModel,
     ActionFigureModel? actionFigureModel,

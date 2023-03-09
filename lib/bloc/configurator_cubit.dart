@@ -1,18 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:katotakid/common/page_enum.dart';
 import 'package:katotakid/utilty/constants.dart';
 import 'package:katotakid/utilty/model/action_figure_model.dart';
 import 'package:katotakid/utilty/model/head_model.dart';
 
 import '../utilty/model/clothing_model.dart';
 import 'configurator_state.dart';
+import 'dart:html';
 
 class ConfiguratorCubit extends Cubit<ConfiguratorState> {
-  ConfiguratorCubit() : super(ConfiguratorState.initialState);
+  ConfiguratorCubit({required initPage}) : super(ConfiguratorState.initialState) {
+    emit(state.copyWith(page: initPage));
+  }
 
-  void init() {}
-
-  void changePage() {
-    emit(state.copyWith(page: state.page == 0 ? 1 : 0));
+  void changePage(PageEnum newPage) {
+    emit(state.copyWith(page: newPage));
   }
 
   changeValueActionFigure(int newValue, String type) {

@@ -16,26 +16,14 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
-      body: BlocProvider(
-        create: (_) => ConfiguratorCubit(),
-        child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
-          builder: (BuildContext context, state) {
-            return GestureDetector(
-              onTap: () => Navigator.pushNamed(context, '/menu'),
-              child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                alignment: Alignment.center,
-                child: _buildBody(context, state),
-              ),
-            );
-          },
-        ),
+      body: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, '/menu'),
+        child: _buildBody(context),
       ),
     );
   }
 
-  Widget _buildBody(BuildContext context, ConfiguratorState state) {
+  Widget _buildBody(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
