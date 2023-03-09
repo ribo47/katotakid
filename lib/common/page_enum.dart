@@ -1,5 +1,6 @@
 enum PageEnum{
   actionFigure,
   head,
-  clothing
+  clothing,
+  total
 }

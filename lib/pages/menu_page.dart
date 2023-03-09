@@ -23,28 +23,30 @@ class MenuPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     final size = MediaQuery.of(context).size.width * 0.22;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        MenuCard(
-          icon: KKIcons.fullFigure,
-          onTap: () => Navigator.pushNamed(context, '/configure'),
-          size: size,
-          title: KKStrings.actionFigure.tr(),
-        ),
-        MenuCard(
-          icon: KKIcons.head,
-          onTap: () => Navigator.pushNamed(context, '/configure'),
-          size: size,
-          title: KKStrings.headsOnly.tr(),
-        ),
-        MenuCard(
-          icon: KKIcons.tshirt,
-          onTap: () => Navigator.pushNamed(context, '/configure'),
-          size: size,
-          title: KKStrings.clothingApparel.tr(),
-        ),
-      ],
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          MenuCard(
+            icon: KKIcons.fullFigure,
+            onTap: () => Navigator.pushNamed(context, '/configure'),
+            size: size,
+            title: KKStrings.actionFigure.tr(),
+          ),
+          MenuCard(
+            icon: KKIcons.head,
+            onTap: () => Navigator.pushNamed(context, '/configure'),
+            size: size,
+            title: KKStrings.headsOnly.tr(),
+          ),
+          MenuCard(
+            icon: KKIcons.tshirt,
+            onTap: () => Navigator.pushNamed(context, '/configure'),
+            size: size,
+            title: KKStrings.clothingApparel.tr(),
+          ),
+        ],
+      ),
     );
   }
 }

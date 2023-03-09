@@ -10,7 +10,6 @@ class KKIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       getAssetName(iconName),
-      color: color ?? Colors.white,
     );
   }
 }
@@ -39,6 +38,7 @@ String getAssetName(KKIcons iconName) {
     case KKIcons.head:
       return "assets/images/head.svg";
     case KKIcons.kkLogo:
+      return "assets/images/kk_logo.png";
       return "assets/images/kk_logo.svg";
     case KKIcons.tshirt:
       return "assets/images/tshirt.svg";

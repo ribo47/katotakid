@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const WelcomePage(),
         '/menu': (context) => const MenuPage(),
         '/configure': (context) => const ConfiguratorPage(initPage: PageEnum.actionFigure),
-        '/total': (context) => const TotalPage(),
+        '/total': (context) => const TotalPage(totalPrice: 0,),
       },
     );
   }

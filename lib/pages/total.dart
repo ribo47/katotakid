@@ -1,17 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:katotakid/utilty/icons.dart';
 
-import '../bloc/configurator_cubit.dart';
-import '../bloc/configurator_state.dart';
 import '../utilty/theme.dart';
 
 class TotalPage extends StatelessWidget {
-  const TotalPage({Key? key}) : super(key: key);
+  final double totalPrice;
+  const TotalPage({Key? key, required this.totalPrice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +48,7 @@ class TotalPage extends StatelessWidget {
           height: 200,
           alignment: Alignment.center,
           child: Text(
-            '${context.read<ConfiguratorCubit>().getTotal()} €',
+            '$totalPrice €',
             style: const TextStyle(color: black, fontSize: 120),
           ),
         ),

@@ -7,6 +7,7 @@ import 'package:katotakid/common/add_sub_model.dart';
 import 'package:katotakid/common/page_enum.dart';
 import 'package:katotakid/pages/add_sub_page.dart';
 import 'package:katotakid/pages/clothing.dart';
+import 'package:katotakid/pages/total.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:katotakid/utilty/icons.dart';
 
@@ -16,6 +17,7 @@ import '../utilty/theme.dart';
 
 class ConfiguratorPage extends StatelessWidget {
   final PageEnum initPage;
+
   const ConfiguratorPage({Key? key, required this.initPage}) : super(key: key);
 
   @override
@@ -40,23 +42,23 @@ class ConfiguratorPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context, ConfiguratorState state) {
     late final first, second, third;
-    switch (state.page){
+    switch (state.page) {
       case PageEnum.actionFigure:
-        first=AddSubModel(
+        first = AddSubModel(
           title: KKStrings.fullBody.tr(),
           cost: 82.68,
           addSubFunction: (newValue) =>
               context.read<ConfiguratorCubit>().changeValueActionFigure(newValue, 'fullBody'),
           cont: state.actionFigureModel.fullBody,
         );
-        second=AddSubModel(
+        second = AddSubModel(
           title: KKStrings.prints3d.tr(),
           cost: 11.02,
           addSubFunction: (newValue) =>
               context.read<ConfiguratorCubit>().changeValueActionFigure(newValue, 'prints'),
           cont: state.actionFigureModel.prints,
         );
-        third=AddSubModel(
+        third = AddSubModel(
           title: KKStrings.painting.tr(),
           cost: 27.56,
           addSubFunction: (newValue) =>
@@ -65,7 +67,7 @@ class ConfiguratorPage extends StatelessWidget {
         );
         break;
       case PageEnum.head:
-        first=AddSubModel(
+        first = AddSubModel(
           title: KKStrings.fullBody.tr(),
           cost: 60.63,
           addSubFunction: (newValue) =>
@@ -73,7 +75,7 @@ class ConfiguratorPage extends StatelessWidget {
           cont: state.actionFigureModel.fullBody,
           image: KKIcons.fullBody,
         );
-        second=AddSubModel(
+        second = AddSubModel(
           title: KKStrings.prints3d.tr(),
           cost: 99,
           addSubFunction: (newValue) =>
@@ -81,7 +83,7 @@ class ConfiguratorPage extends StatelessWidget {
           cont: state.actionFigureModel.prints,
           image: KKIcons.prints,
         );
-        third=AddSubModel(
+        third = AddSubModel(
           title: KKStrings.painting.tr(),
           cost: 27.56,
           addSubFunction: (newValue) =>
@@ -92,9 +94,15 @@ class ConfiguratorPage extends StatelessWidget {
         break;
       case PageEnum.clothing:
         return const ClothingPage();
+      case PageEnum.total:
+        return TotalPage(
+          totalPrice: context.read<ConfiguratorCubit>().getTotal(),
+        );
     }
     return AddSubPage(
-      first: first, second: second, third: third,
+      first: first,
+      second: second,
+      third: third,
     );
   }
 }
