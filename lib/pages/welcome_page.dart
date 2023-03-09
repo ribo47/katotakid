@@ -7,9 +7,7 @@ import 'package:katotakid/utilty/icons.dart';
 
 import '../bloc/configurator_cubit.dart';
 import '../bloc/configurator_state.dart';
-import '../utilty/bubbles.dart';
 import '../utilty/theme.dart';
-import 'background_screen.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -24,16 +22,11 @@ class WelcomePage extends StatelessWidget {
           builder: (BuildContext context, state) {
             return GestureDetector(
               onTap: () => Navigator.pushNamed(context, '/menu'),
-              child: Stack(
-                children: [
-                  ...getBackgroundBubbles(Pages.welcome, context),
-                  Container(
-                    width: double.maxFinite,
-                    height: double.maxFinite,
-                    alignment: Alignment.center,
-                    child: _buildBody(context, state),
-                  ),
-                ],
+              child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                alignment: Alignment.center,
+                child: _buildBody(context, state),
               ),
             );
           },

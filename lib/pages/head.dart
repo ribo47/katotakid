@@ -4,14 +4,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
-import 'package:katotakid/utilty/bubbles.dart';
 import 'package:katotakid/utilty/icons.dart';
 
 import '../bloc/configurator_cubit.dart';
 import '../bloc/configurator_state.dart';
 import '../common/add_sub_widget.dart';
 import '../utilty/theme.dart';
-import 'background_screen.dart';
 
 class HeadPage extends StatelessWidget {
   const HeadPage({Key? key}) : super(key: key);
@@ -29,16 +27,11 @@ class HeadPage extends StatelessWidget {
         create: (_) => ConfiguratorCubit(),
         child: BlocBuilder<ConfiguratorCubit, ConfiguratorState>(
           builder: (BuildContext context, state) {
-            return Stack(
-              children: [
-                ...getBackgroundBubbles(Pages.head, context),
-                Container(
-                  width: double.maxFinite,
-                  height: double.maxFinite,
-                  alignment: Alignment.center,
-                  child: _buildBody(context, state),
-                ),
-              ],
+            return Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              alignment: Alignment.center,
+              child: _buildBody(context, state),
             );
           },
         ),
