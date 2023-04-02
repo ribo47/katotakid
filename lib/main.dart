@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:katotakid/common/page_enum.dart';
-import 'package:katotakid/pages/configurator_page.dart';
+import 'package:katotakid/pages/action_figure/action_figure_page.dart';
+import 'package:katotakid/pages/head/head_page.dart';
 import 'package:katotakid/pages/menu_page.dart';
 import 'package:katotakid/pages/total.dart';
 import 'package:katotakid/pages/welcome_page.dart';
@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const WelcomePage(),
         '/menu': (context) => const MenuPage(),
-        '/configure': (context) => const ConfiguratorPage(initPage: PageEnum.actionFigure),
+        '/action_figure': (context) => const ActionFigurePage(),
+        '/head': (context) => const HeadPage(),
         '/total': (context) => const TotalPage(totalPrice: 0,),
       },
     );

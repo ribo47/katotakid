@@ -1,12 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/page_enum.dart';
-import 'package:katotakid/utilty/constants.dart';
 import 'package:katotakid/utilty/model/action_figure_model.dart';
 import 'package:katotakid/utilty/model/head_model.dart';
-
-import '../utilty/model/clothing_model.dart';
 import 'configurator_state.dart';
-import 'dart:html';
 
 class ConfiguratorCubit extends Cubit<ConfiguratorState> {
   ConfiguratorCubit({required initPage}) : super(ConfiguratorState.initialState) {
@@ -46,22 +42,6 @@ class ConfiguratorCubit extends Cubit<ConfiguratorState> {
   }
 
   double getTotal() {
-    final partial1 = (state.headModel.paintings * Constants.paintingHead) +
-        (state.headModel.prints * Constants.printHead) +
-        (state.headModel.fullBody * Constants.fullBodyHead) +
-        (state.actionFigureModel.paintings * Constants.painting) +
-        (state.actionFigureModel.prints * Constants.print) +
-        (state.actionFigureModel.fullBody * Constants.fullBody);
-
-    switch (state.clothingModel.type) {
-      case ClothingType.longSleeve:
-        return partial1 * Constants.longSleeve;
-      case ClothingType.tShirt:
-        return partial1 * Constants.tShirt;
-      case ClothingType.jacket:
-        return partial1 * Constants.jacket;
-      default:
-        return partial1;
-    }
+    return 0.1;
   }
 }
