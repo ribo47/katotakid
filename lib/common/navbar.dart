@@ -10,6 +10,7 @@ class NavBar extends StatelessWidget {
   final Function() goToHead;
   final Function() goToActionFigure;
   final Function() goToClothing;
+  final Function() goToTotal;
 
   const NavBar(
       {Key? key,
@@ -17,7 +18,9 @@ class NavBar extends StatelessWidget {
       required this.total,
       required this.goToHead,
       required this.goToActionFigure,
-      required this.goToClothing})
+      required this.goToClothing,
+      required this.goToTotal,
+      })
       : super(key: key);
 
   @override
@@ -41,7 +44,7 @@ class NavBar extends StatelessWidget {
     return Row(
       children: [
         if (!page.isTotal()) ...[
-          NavBarTotal(totalPrice: 0.1),
+          NavBarTotal(totalPrice: 0.1, goToTotal:goToTotal),
           const SizedBox(
             width: 46,
           ),

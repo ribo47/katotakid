@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:katotakid/pages/total.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 
 import '../utilty/theme.dart';
@@ -60,12 +59,14 @@ class AddOtherBottom extends StatelessWidget {
 
 class NavBarTotal extends StatelessWidget {
   final double totalPrice;
-  const NavBarTotal({Key? key, required this.totalPrice}) : super(key: key);
+  final Function() goToTotal;
+
+  const NavBarTotal({Key? key, required this.totalPrice, required this.goToTotal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => TotalPage(totalPrice: totalPrice),
+      onTap: goToTotal,
       child: Container(
         width: 300,
         height: 95,

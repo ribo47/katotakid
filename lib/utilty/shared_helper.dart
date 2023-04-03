@@ -22,6 +22,10 @@ class SharedHelper{
     final priceJson = prefs.getString('price');
     if(priceJson == null) return null;
     return jsonDecode(priceJson);
+  }
 
+  static saveOnShared(String data) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('price', data);
   }
 }

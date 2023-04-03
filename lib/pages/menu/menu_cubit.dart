@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/page_enum.dart';
 import 'package:katotakid/pages/menu/menu_state.dart';
@@ -7,16 +8,23 @@ import 'package:katotakid/utilty/shared_helper.dart';
 
 class MenuCubit extends Cubit<MenuState> {
   MenuCubit() : super(MenuState.initialState) {
-    getPrice();
+    getPriceFromFile();
   }
 
   double get total => getHeadTotal() + getActionFigureTotal();
 
   int get totalCount => getHeadCount() + getActionFiguresCount();
 
+  getPriceFromFile() async {
+    final file = await rootBundle.loadString("assets/price.json");
+    await SharedHelper.saveOnShared(file);
+    getPrice();
+  }
+
   Future<void> getPrice() async {
     final headPrice = await SharedHelper.getHeadPrice();
     final actionFigurePrice = await SharedHelper.getActionFigurePrice();
+
     emit(state.copyWith(
       headPrice: headPrice,
       actionFigurePrice: actionFigurePrice,

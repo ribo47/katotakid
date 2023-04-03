@@ -31,9 +31,9 @@ class HeadModelPrice {
 
   factory HeadModelPrice.fromMap(Map<String, dynamic> map) {
     return HeadModelPrice(
-      fullBody: map['fullBody'] as double,
-      prints: map['prints'] as double,
-      paintings: map['paintings'] as double,
+      fullBody: map['head_fullBody'] as double,
+      prints: map['head_prints'] as double,
+      paintings: map['head_paintings'] as double,
     );
   }
 }

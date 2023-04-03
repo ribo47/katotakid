@@ -47,6 +47,9 @@ class _MenuPageState extends State<MenuPage> {
                 goToClothing: () => setState(() {
                   page = PageEnum.clothing;
                 }),
+                goToTotal: () => setState(() {
+                  page = PageEnum.total;
+                }),
               ),
               body: _buildBody(context, state),
             );
