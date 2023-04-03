@@ -37,9 +37,15 @@ class _MenuPageState extends State<MenuPage> {
               backgroundColor: KKTheme().globalTheme.backgroundColor,
               bottomNavigationBar: NavBar(
                 page: page,
-                total: 0.1,
+                total: context.read<MenuCubit>().totalCount,
                 goToHead: () => setState(() {
                   page = PageEnum.head;
+                }),
+                goToActionFigure: () => setState(() {
+                  page = PageEnum.actionFigure;
+                }),
+                goToClothing: () => setState(() {
+                  page = PageEnum.clothing;
                 }),
               ),
               body: _buildBody(context, state),
@@ -53,7 +59,12 @@ class _MenuPageState extends State<MenuPage> {
   Widget _buildBody(BuildContext context, MenuState state) {
     switch (page) {
       case PageEnum.actionFigure:
-        return const ActionFigurePage();
+        return ActionFigurePage(
+          price: state.actionFigurePrice,
+          actionFigureModel: state.actionFigureModel,
+          changeValueActionFigure: (count, type) =>
+              context.read<MenuCubit>().changeValueActionFigure(count, type),
+        );
       case PageEnum.head:
         return HeadPage(
           price: state.headPrice,
@@ -63,8 +74,8 @@ class _MenuPageState extends State<MenuPage> {
       case PageEnum.clothing:
         return const ClothingPage();
       case PageEnum.total:
-        return const TotalPage(
-          totalPrice: 0.1,
+        return TotalPage(
+          totalPrice: context.read<MenuCubit>().total,
         );
       case PageEnum.menu:
         return _buildMenu(context);

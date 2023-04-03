@@ -10,6 +10,10 @@ class MenuCubit extends Cubit<MenuState> {
     getPrice();
   }
 
+  double get total => getHeadTotal() + getActionFigureTotal();
+
+  int get totalCount => getHeadCount() + getActionFiguresCount();
+
   Future<void> getPrice() async {
     final headPrice = await SharedHelper.getHeadPrice();
     final actionFigurePrice = await SharedHelper.getActionFigurePrice();
@@ -37,6 +41,11 @@ class MenuCubit extends Cubit<MenuState> {
     }
   }
 
+  int getHeadCount() {
+    final hm = state.headModel;
+    return hm.paintings + hm.prints + hm.fullBody;
+  }
+
   double getHeadTotal() {
     return (state.headModel.paintings * state.headPrice.paintings) +
         (state.headModel.prints * state.headPrice.prints) +
@@ -55,6 +64,11 @@ class MenuCubit extends Cubit<MenuState> {
     if (type == 'prints') {
       emit(state.copyWith(actionFigureModel: newModel.copyWith(prints: newValue)));
     }
+  }
+
+  int getActionFiguresCount() {
+    final afm = state.actionFigureModel;
+    return afm.paintings + afm.prints + afm.fullBody;
   }
 
   double getActionFigureTotal() {

@@ -1,57 +1,49 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/common/add_sub_model.dart';
-import 'package:katotakid/pages/action_figure/action_figure_cubit.dart';
-import 'package:katotakid/pages/action_figure/action_figure_state.dart';
 import 'package:katotakid/pages/add_sub_page.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
+import 'package:katotakid/utilty/model/action_figure_model.dart';
+import 'package:katotakid/utilty/model/action_figure_model_price.dart';
 import 'package:katotakid/utilty/theme.dart';
 
 class ActionFigurePage extends StatelessWidget {
 
-  const ActionFigurePage({Key? key}) : super(key: key);
+  final ActionFigureModel actionFigureModel;
+  final ActionFigureModelPrice price;
+  final Function(int, String) changeValueActionFigure;
+
+  const ActionFigurePage({Key? key, required this.actionFigureModel, required this.price, required this.changeValueActionFigure}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
 
-      body: BlocProvider(
-        create: (_) => ActionFigureCubit(),
-        child: BlocBuilder<ActionFigureCubit, ActionFigureState>(
-          builder: (BuildContext context, state) {
-            return _buildBody(context, state);
-          },
-        ),
-      ),
+      body: _buildBody(context)
     );
   }
 
-  Widget _buildBody(BuildContext context, ActionFigureState state) {
+  Widget _buildBody(BuildContext context) {
 
     final first = AddSubModel(
       title: KKStrings.fullBody.tr(),
-      cost: 82.68,
-      addSubFunction: (newValue) =>
-          context.read<ActionFigureCubit>().changeValueActionFigure(newValue, 'fullBody'),
-      cont: state.actionFigureModel.fullBody,
+      cost: price.fullBody,
+      addSubFunction: (newValue) => changeValueActionFigure(newValue, 'fullBody'),
+      cont: actionFigureModel.fullBody,
     );
     final second = AddSubModel(
       title: KKStrings.prints3d.tr(),
-      cost: 11.02,
-      addSubFunction: (newValue) =>
-          context.read<ActionFigureCubit>().changeValueActionFigure(newValue, 'prints'),
-      cont: state.actionFigureModel.prints,
+      cost: price.prints,
+      addSubFunction: (newValue) =>changeValueActionFigure(newValue, 'prints'),
+      cont: actionFigureModel.prints,
     );
     final third = AddSubModel(
       title: KKStrings.painting.tr(),
-      cost: 27.56,
-      addSubFunction: (newValue) =>
-          context.read<ActionFigureCubit>().changeValueActionFigure(newValue, 'paintings'),
-      cont: state.actionFigureModel.paintings,
+      cost: price.paintings,
+      addSubFunction: (newValue) =>changeValueActionFigure(newValue, 'paintings'),
+      cont: actionFigureModel.paintings,
     );
 
     return AddSubPage(

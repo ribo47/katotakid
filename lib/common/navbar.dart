@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/common/page_enum.dart';
-import 'package:katotakid/pages/action_figure/action_figure_page.dart';
-import 'package:katotakid/pages/clothing.dart';
-import 'package:katotakid/pages/head/head_page.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class NavBar extends StatelessWidget {
   final PageEnum page;
-  final double total;
+  final int total;
   final Function() goToHead;
+  final Function() goToActionFigure;
+  final Function() goToClothing;
 
-  const NavBar({Key? key, required this.page, required this.total, required this.goToHead}) : super(key: key);
+  const NavBar(
+      {Key? key,
+      required this.page,
+      required this.total,
+      required this.goToHead,
+      required this.goToActionFigure,
+      required this.goToClothing})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,7 @@ class NavBar extends StatelessWidget {
     return Row(
       children: [
         if (!page.isTotal()) ...[
-          NavBarTotal(totalPrice: total),
+          NavBarTotal(totalPrice: 0.1),
           const SizedBox(
             width: 46,
           ),
@@ -43,7 +49,7 @@ class NavBar extends StatelessWidget {
         if (page.showActionFigure()) ...[
           AddOtherBottom(
             label: KKStrings.addFullBody.tr(),
-            callback: () => const ActionFigurePage(),
+            callback: goToActionFigure,
           ),
           const SizedBox(width: 24),
         ],
@@ -57,7 +63,7 @@ class NavBar extends StatelessWidget {
         if (page.showClothing()) ...[
           AddOtherBottom(
             label: KKStrings.addClothing.tr(),
-            callback: () => const ClothingPage(),
+            callback: goToClothing,
           ),
           const SizedBox(width: 24),
         ]
@@ -66,11 +72,23 @@ class NavBar extends StatelessWidget {
   }
 
   Widget _buildCart(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      iconSize: 100,
-      color: Colors.white,
-      icon: const Icon(Icons.shopping_cart),
+    return Stack(
+      children: [
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Chip(
+            backgroundColor: const Color(0xFFFF6827),
+            label: Text(total.toString(), style: const TextStyle(color: Colors.white),),
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          iconSize: 100,
+          color: Colors.white,
+          icon: const Icon(Icons.shopping_cart),
+        ),
+      ],
     );
   }
 }
