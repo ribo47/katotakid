@@ -18,11 +18,7 @@ class ActionFigurePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
-      bottomNavigationBar: AddOtherBottom(
-          firstText: KKStrings.addClothing.tr(),
-          firstCallback: () {},
-          secondText: KKStrings.addFullBody.tr(),
-          secondCallback: () => Navigator.pushNamed(context, '/action')),
+
       body: BlocProvider(
         create: (_) => ActionFigureCubit(),
         child: BlocBuilder<ActionFigureCubit, ActionFigureState>(

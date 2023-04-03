@@ -1,121 +1,89 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:katotakid/pages/total.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 
 import '../utilty/theme.dart';
 
 class AddOtherBottom extends StatelessWidget {
-  final Function() firstCallback;
-  final Function() secondCallback;
-  final String firstText;
-  final String secondText;
+  final Function() callback;
+  final String label;
 
   const AddOtherBottom(
       {Key? key,
-      required this.firstCallback,
-      required this.secondCallback,
-      required this.firstText,
-      required this.secondText})
+      required this.callback,
+      required this.label,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.end,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () => Navigator.pushNamed(context, '/total'),
-              child: Container(
-                width: 300,
-                height: 95,
-                decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Center(
-                  child: Text(
-                    KKStrings.totalPrice.tr(),
-                    style: const TextStyle(color: blue, fontSize: 30),
-                  ),
-                ),
+        InkWell(
+          onTap: () => callback(),
+          child: Container(
+            width: 95,
+            height: 95,
+            decoration: BoxDecoration(
+              color: white,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: const Center(
+              child: Text(
+                '+',
+                style: TextStyle(color: blue, fontSize: 60),
               ),
             ),
-            const SizedBox(
-              width: 46,
-            ),
-            InkWell(
-              onTap: () => firstCallback(),
-              child: Container(
-                width: 95,
-                height: 95,
-                decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: Text(
-                    '+',
-                    style: TextStyle(color: blue, fontSize: 60),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              firstText,
-              style: const TextStyle(
-                color: white,
-                fontSize: 18,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(
-              width: 24,
-            ),
-            InkWell(
-              onTap: () => secondCallback(),
-              child: Container(
-                width: 95,
-                height: 95,
-                decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: Text(
-                    '+',
-                    style: TextStyle(color: blue, fontSize: 60),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              secondText,
-              style: const TextStyle(
-                color: white,
-                fontSize: 18,
-                height: 1.5,
-              ),
-            )
-          ],
+          ),
         ),
         const SizedBox(
-          height: 24,
+          width: 8,
         ),
+        Text(
+          label,
+          style: const TextStyle(
+            color: white,
+            fontSize: 18,
+            height: 1.5,
+          ),
+        ),
+        const SizedBox(
+          width: 24,
+        ),
+
       ],
     );
   }
 }
+
+class NavBarTotal extends StatelessWidget {
+  final double totalPrice;
+  const NavBarTotal({Key? key, required this.totalPrice}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => TotalPage(totalPrice: totalPrice),
+      child: Container(
+        width: 300,
+        height: 95,
+        decoration: BoxDecoration(
+          color: white,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Center(
+          child: Text(
+            KKStrings.totalPrice.tr(),
+            style: const TextStyle(color: blue, fontSize: 30),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class AddAllBottom extends StatelessWidget {
   const AddAllBottom({Key? key}) : super(key: key);
