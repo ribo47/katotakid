@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:katotakid/utilty/icons.dart';
 
@@ -9,18 +8,31 @@ import '../utilty/theme.dart';
 
 class TotalPage extends StatelessWidget {
   final double totalPrice;
-  const TotalPage({Key? key, required this.totalPrice}) : super(key: key);
+  final double shippingPrice;
+  final Function(bool) changeShipping;
+  final bool isRegularShipping;
+  final Future<bool> Function(String username) checkUser;
+  final TextEditingController controller = TextEditingController();
+
+  TotalPage({
+    Key? key,
+    required this.totalPrice,
+    required this.changeShipping,
+    required this.isRegularShipping,
+    required this.shippingPrice,
+    required this.checkUser,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
-      bottomNavigationBar: const AddAllBottom(),
-      body:  _buildBody(context),
+      body: _buildBody(context),
     );
   }
 
   Widget _buildBody(BuildContext context) {
+    bool isCorrectUser = true;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -58,73 +70,17 @@ class TotalPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  color: lightBlue,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x40000000),
-                      offset: Offset(0, 4),
-                      spreadRadius: 3,
-                      blurRadius: 30,
-                    ),
-                  ],
-                ),
-                width: 280,
-                height: 90,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text(
-                      '+15€',
-                      style: TextStyle(color: white, fontSize: 44),
-                    ),
-                    Text(
-                      KKStrings.regularShipping.tr(),
-                      style: const TextStyle(color: white, fontSize: 22),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            if (isRegularShipping)
+              _buildNotActiveButton(KKStrings.regularShipping.tr())
+            else
+              _buildActiveButton(KKStrings.regularShipping.tr()),
             const SizedBox(
               width: 20,
             ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  color: lightBlue,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x40000000),
-                      offset: Offset(0, 4),
-                      spreadRadius: 3,
-                      blurRadius: 30,
-                    ),
-                  ],
-                ),
-                width: 280,
-                height: 90,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text(
-                      '+15€',
-                      style: TextStyle(color: white, fontSize: 44),
-                    ),
-                    Text(
-                      KKStrings.expressShipping.tr(),
-                      style: const TextStyle(color: white, fontSize: 22),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            if (isRegularShipping)
+              _buildActiveButton(KKStrings.expressShipping.tr())
+            else
+              _buildNotActiveButton(KKStrings.expressShipping.tr()),
           ],
         ),
         const SizedBox(
@@ -137,10 +93,10 @@ class TotalPage extends StatelessWidget {
             Container(
               width: 400,
               child: TextField(
+                controller: controller,
                 style: const TextStyle(fontSize: 20, color: grey),
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide.none),
+                  border: _getBorder(isCorrectUser),
                   hintText: KKStrings.yourInstagramName.tr(),
                   fillColor: white,
                   filled: true,
@@ -152,7 +108,7 @@ class TotalPage extends StatelessWidget {
               width: 10,
             ),
             InkWell(
-              onTap: () => print('ahahhahaha'),
+              onTap: () async => await checkUser(controller.value.text),
               hoverColor: Colors.transparent,
               child: Image.asset(
                 getAssetName(KKIcons.rightChevron),
@@ -162,6 +118,83 @@ class TotalPage extends StatelessWidget {
           ],
         )
       ],
+    );
+  }
+
+  OutlineInputBorder _getBorder(bool isCorrectUser) {
+    if (isCorrectUser) {
+      return OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide.none);
+    } else {
+      return OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.redAccent, width: 1.5));
+    }
+  }
+
+  Widget _buildActiveButton(String text) {
+    final stringPrice = (isRegularShipping) ? '+$shippingPrice€' : '-$shippingPrice€';
+
+    final button = Container(
+      decoration: BoxDecoration(
+        color: lightBlue,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x40000000),
+            offset: Offset(0, 4),
+            spreadRadius: 3,
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      width: 280,
+      height: 90,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            stringPrice,
+            style: const TextStyle(color: white, fontSize: 44),
+          ),
+          Text(
+            text,
+            style: const TextStyle(color: white, fontSize: 22),
+          ),
+        ],
+      ),
+    );
+    return InkWell(
+      onTap: () => changeShipping(isRegularShipping == true),
+      child: button,
+    );
+  }
+
+  Widget _buildNotActiveButton(String text) {
+    return Container(
+      decoration: BoxDecoration(
+        color: white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x40000000),
+            offset: Offset(0, 4),
+            spreadRadius: 3,
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      width: 280,
+      height: 90,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            text,
+            style: const TextStyle(color: lightBlue, fontSize: 22),
+          ),
+        ],
+      ),
     );
   }
 }

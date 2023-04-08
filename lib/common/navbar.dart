@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:katotakid/common/add_other_bottom.dart';
 import 'package:katotakid/common/page_enum.dart';
+import 'package:katotakid/pages/menu/menu_cubit.dart';
 import 'package:katotakid/utilty/KKStrings.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class NavBar extends StatelessWidget {
   final PageEnum page;
-  final int total;
+  final int totalCount;
+  final double total;
   final Function() goToHead;
   final Function() goToActionFigure;
   final Function() goToClothing;
   final Function() goToTotal;
 
-  const NavBar(
-      {Key? key,
-      required this.page,
-      required this.total,
-      required this.goToHead,
-      required this.goToActionFigure,
-      required this.goToClothing,
-      required this.goToTotal,
-      })
-      : super(key: key);
+  const NavBar({
+    Key? key,
+    required this.page,
+    required this.totalCount,
+    required this.goToHead,
+    required this.goToActionFigure,
+    required this.goToClothing,
+    required this.goToTotal,
+    required this.total,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class NavBar extends StatelessWidget {
     return Row(
       children: [
         if (!page.isTotal()) ...[
-          NavBarTotal(totalPrice: 0.1, goToTotal:goToTotal),
+          NavBarTotal(totalPrice: total, goToTotal: goToTotal),
           const SizedBox(
             width: 46,
           ),
@@ -82,7 +84,10 @@ class NavBar extends StatelessWidget {
           right: 0,
           child: Chip(
             backgroundColor: const Color(0xFFFF6827),
-            label: Text(total.toString(), style: const TextStyle(color: Colors.white),),
+            label: Text(
+              totalCount.toString(),
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ),
         IconButton(

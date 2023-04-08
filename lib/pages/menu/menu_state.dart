@@ -10,6 +10,7 @@ class MenuState {
   final HeadModelPrice headPrice;
   final ActionFigureModel actionFigureModel;
   final ActionFigureModelPrice actionFigurePrice;
+  final bool? isRegularShipping;
 
   MenuState({
     required this.pageEnum,
@@ -17,6 +18,7 @@ class MenuState {
     required this.headPrice,
     required this.actionFigureModel,
     required this.actionFigurePrice,
+    this.isRegularShipping
   });
 
   static MenuState initialState = MenuState(
@@ -33,6 +35,7 @@ class MenuState {
     HeadModelPrice? headPrice,
     ActionFigureModel? actionFigureModel,
     ActionFigureModelPrice? actionFigurePrice,
+    bool? isRegularShipping,
   }) {
     return MenuState(
       pageEnum: pageEnum ?? this.pageEnum,
@@ -40,6 +43,7 @@ class MenuState {
       headPrice: headPrice ?? this.headPrice,
       actionFigureModel: actionFigureModel ?? this.actionFigureModel,
       actionFigurePrice: actionFigurePrice ?? this.actionFigurePrice,
+      isRegularShipping: isRegularShipping ?? this.isRegularShipping,
     );
   }
 }

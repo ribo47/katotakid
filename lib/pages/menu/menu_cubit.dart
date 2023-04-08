@@ -5,13 +5,14 @@ import 'package:katotakid/pages/menu/menu_state.dart';
 import 'package:katotakid/utilty/model/action_figure_model.dart';
 import 'package:katotakid/utilty/model/head_model.dart';
 import 'package:katotakid/utilty/shared_helper.dart';
+import 'package:http/http.dart' as http;
 
 class MenuCubit extends Cubit<MenuState> {
   MenuCubit() : super(MenuState.initialState) {
     getPriceFromFile();
   }
 
-  double get total => getHeadTotal() + getActionFigureTotal();
+  double get total => getHeadTotal() + getActionFigureTotal() + getShipment();
 
   int get totalCount => getHeadCount() + getActionFiguresCount();
 
@@ -83,5 +84,19 @@ class MenuCubit extends Cubit<MenuState> {
     return (state.actionFigureModel.paintings * state.actionFigurePrice.paintings) +
         (state.actionFigureModel.prints * state.actionFigurePrice.prints) +
         (state.actionFigureModel.fullBody * state.actionFigurePrice.fullBody);
+  }
+
+  void changeShipping(bool isRegular) {
+    emit(state.copyWith(isRegularShipping: !isRegular));
+  }
+
+  double getShipment() {
+    return (state.isRegularShipping ?? true) ? 0 : 15;
+  }
+
+  Future<bool> checkIfUserExist(String username) async {
+    return true;
+    final response = await http.get(Uri.parse("https://www.instagram.com/$username/"));
+    return response.statusCode != 404;
   }
 }

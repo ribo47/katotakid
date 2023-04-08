@@ -37,7 +37,8 @@ class _MenuPageState extends State<MenuPage> {
               backgroundColor: KKTheme().globalTheme.backgroundColor,
               bottomNavigationBar: NavBar(
                 page: page,
-                total: context.read<MenuCubit>().totalCount,
+                totalCount: context.read<MenuCubit>().totalCount,
+                total: context.read<MenuCubit>().total,
                 goToHead: () => setState(() {
                   page = PageEnum.head;
                 }),
@@ -79,6 +80,10 @@ class _MenuPageState extends State<MenuPage> {
       case PageEnum.total:
         return TotalPage(
           totalPrice: context.read<MenuCubit>().total,
+          changeShipping: context.read<MenuCubit>().changeShipping,
+          isRegularShipping: state.isRegularShipping ?? true,
+          shippingPrice: 15,
+          checkUser: context.read<MenuCubit>().checkIfUserExist
         );
       case PageEnum.menu:
         return _buildMenu(context);
