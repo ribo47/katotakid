@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:katotakid/pages/action_figure/action_figure_page.dart';
+import 'package:katotakid/pages/good_bye_page.dart';
 import 'package:katotakid/pages/head/head_page.dart';
 import 'package:katotakid/pages/menu/menu_page.dart';
 import 'package:katotakid/pages/total.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const WelcomePage(),
         '/menu': (context) => const MenuPage(),
+        '/goodbye': (context) => const GoodByePage(),
       },
     );
   }

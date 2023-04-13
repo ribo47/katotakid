@@ -83,7 +83,7 @@ class _MenuPageState extends State<MenuPage> {
           changeShipping: context.read<MenuCubit>().changeShipping,
           isRegularShipping: state.isRegularShipping ?? true,
           shippingPrice: 15,
-          checkUser: context.read<MenuCubit>().checkIfUserExist
+          sendEmail: context.read<MenuCubit>().sendEmail
         );
       case PageEnum.menu:
         return _buildMenu(context);

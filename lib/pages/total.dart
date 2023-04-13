@@ -11,7 +11,7 @@ class TotalPage extends StatelessWidget {
   final double shippingPrice;
   final Function(bool) changeShipping;
   final bool isRegularShipping;
-  final Future<bool> Function(String username) checkUser;
+  final Future<bool> Function(String username) sendEmail;
   final TextEditingController controller = TextEditingController();
 
   TotalPage({
@@ -20,7 +20,7 @@ class TotalPage extends StatelessWidget {
     required this.changeShipping,
     required this.isRegularShipping,
     required this.shippingPrice,
-    required this.checkUser,
+    required this.sendEmail,
   }) : super(key: key);
 
   @override
@@ -60,7 +60,7 @@ class TotalPage extends StatelessWidget {
           height: 200,
           alignment: Alignment.center,
           child: Text(
-            '$totalPrice €',
+            '${totalPrice.toStringAsFixed(2)} €',
             style: const TextStyle(color: black, fontSize: 120),
           ),
         ),
@@ -108,7 +108,34 @@ class TotalPage extends StatelessWidget {
               width: 10,
             ),
             InkWell(
-              onTap: () async => await checkUser(controller.value.text),
+              onTap: () async {
+                final email = await sendEmail(controller.value.text);
+                if (email) {
+                  Navigator.pushNamed(context, '/goodbye');
+                } else {
+                  Widget okButton = TextButton(
+                    child: const Text("OK"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  );
+
+                  AlertDialog alert = AlertDialog(
+                    title: const Text("Ooops..."),
+                    content: const Text("Try again, something went wrong!"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
+
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
+              },
               hoverColor: Colors.transparent,
               child: Image.asset(
                 getAssetName(KKIcons.rightChevron),

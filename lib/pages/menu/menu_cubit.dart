@@ -2,10 +2,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:katotakid/common/page_enum.dart';
 import 'package:katotakid/pages/menu/menu_state.dart';
+import 'package:katotakid/utilty/email_helper.dart';
 import 'package:katotakid/utilty/model/action_figure_model.dart';
 import 'package:katotakid/utilty/model/head_model.dart';
 import 'package:katotakid/utilty/shared_helper.dart';
 import 'package:http/http.dart' as http;
+import 'package:telegram/telegram.dart';
 
 class MenuCubit extends Cubit<MenuState> {
   MenuCubit() : super(MenuState.initialState) {
@@ -94,9 +96,9 @@ class MenuCubit extends Cubit<MenuState> {
     return (state.isRegularShipping ?? true) ? 0 : 15;
   }
 
-  Future<bool> checkIfUserExist(String username) async {
-    return true;
-    final response = await http.get(Uri.parse("https://www.instagram.com/$username/"));
-    return response.statusCode != 404;
+  Future<bool> sendEmail(String username) async {
+    final mail = await EmailHelper.sendRegistrationNotification(
+        user: username, actionFigure: state.actionFigureModel, head: state.headModel);
+    return mail;
   }
 }
