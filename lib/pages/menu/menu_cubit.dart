@@ -6,8 +6,6 @@ import 'package:katotakid/utilty/email_helper.dart';
 import 'package:katotakid/utilty/model/action_figure_model.dart';
 import 'package:katotakid/utilty/model/head_model.dart';
 import 'package:katotakid/utilty/shared_helper.dart';
-import 'package:http/http.dart' as http;
-import 'package:telegram/telegram.dart';
 
 class MenuCubit extends Cubit<MenuState> {
   MenuCubit() : super(MenuState.initialState) {
@@ -96,9 +94,14 @@ class MenuCubit extends Cubit<MenuState> {
     return (state.isRegularShipping ?? true) ? 0 : 15;
   }
 
-  Future<bool> sendEmail(String username) async {
+  Future<bool> sendEmail(String username, String notes) async {
     final mail = await EmailHelper.sendRegistrationNotification(
-        user: username, actionFigure: state.actionFigureModel, head: state.headModel);
+      user: username,
+      actionFigure: state.actionFigureModel,
+      head: state.headModel,
+      shipping: state.isRegularShipping ?? true,
+      note: notes
+    );
     return mail;
   }
 }

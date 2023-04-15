@@ -4,10 +4,12 @@ import 'package:katotakid/utilty/model/head_model.dart';
 import 'dart:convert';
 
 class EmailHelper {
-  static Future<bool> sendRegistrationNotification(
-      {required String user,
-      required ActionFigureModel actionFigure,
-      required HeadModel head}) async {
+  static Future<bool> sendRegistrationNotification({required String user,
+    required ActionFigureModel actionFigure,
+    required HeadModel head,
+    required bool shipping,
+    String? note,
+  }) async {
     var url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
 
     const serviceId = "service_1bb9jat";
@@ -29,6 +31,8 @@ class EmailHelper {
           'fullBodyHead': head.fullBody,
           'printHead': head.prints,
           'paintHead': head.paintings,
+          'shipping': shipping ? 'Regular' : 'Express',
+          'notes': note ?? ''
         }
       }),
     );

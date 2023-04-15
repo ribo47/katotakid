@@ -11,8 +11,9 @@ class TotalPage extends StatelessWidget {
   final double shippingPrice;
   final Function(bool) changeShipping;
   final bool isRegularShipping;
-  final Future<bool> Function(String username) sendEmail;
+  final Future<bool> Function(String username, String notes) sendEmail;
   final TextEditingController controller = TextEditingController();
+  final TextEditingController notesController = TextEditingController();
 
   TotalPage({
     Key? key,
@@ -84,13 +85,30 @@ class TotalPage extends StatelessWidget {
           ],
         ),
         const SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          width: 400,
+          child: TextField(
+            controller: notesController,
+            style: const TextStyle(fontSize: 20, color: grey),
+            decoration: InputDecoration(
+              border: _getBorder(isCorrectUser),
+              hintText: 'Add some additional notes...',
+              fillColor: white,
+              filled: true,
+              isDense: true,
+            ),
+          ),
+        ),
+        const SizedBox(
           height: 30,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: 400,
               child: TextField(
                 controller: controller,
@@ -109,7 +127,7 @@ class TotalPage extends StatelessWidget {
             ),
             InkWell(
               onTap: () async {
-                final email = await sendEmail(controller.value.text);
+                final email = await sendEmail(controller.value.text, notesController.value.text);
                 if (email) {
                   Navigator.pushNamed(context, '/goodbye');
                 } else {

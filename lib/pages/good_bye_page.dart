@@ -14,10 +14,7 @@ class GoodByePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: KKTheme().globalTheme.backgroundColor,
       extendBody: true,
-      body: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, '/goodbye'),
-        child: _buildBody(context),
-      ),
+      body: _buildBody(context),
     );
   }
 
