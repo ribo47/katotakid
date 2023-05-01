@@ -73,17 +73,24 @@ class _MenuPageState extends State<MenuPage> {
         return HeadPage(
           price: state.headPrice,
           headModel: state.headModel,
-          changeValueHead: (count, type) => context.read<MenuCubit>().changeValueHead(count, type),
+          changeValueHead: (count, type) =>
+              context.read<MenuCubit>().changeValueHead(count, type),
         );
       case PageEnum.clothing:
-        return const ClothingPage();
+        return ClothingPage(
+          clothing: state.clothing,
+          clothingChoosed: state.clothing,
+          changeValueClothing: (clothing) =>
+              context.read<MenuCubit>().changeValueClothing(clothing),
+        );
       case PageEnum.total:
         return TotalPage(
           totalPrice: context.read<MenuCubit>().total,
           changeShipping: context.read<MenuCubit>().changeShipping,
           isRegularShipping: state.isRegularShipping ?? true,
           shippingPrice: 15,
-          sendEmail: context.read<MenuCubit>().sendEmail
+          sendEmail: (name, notes) =>
+              context.read<MenuCubit>().sendEmail(name, notes),
         );
       case PageEnum.menu:
         return _buildMenu(context);

@@ -9,7 +9,11 @@ class MenuCard extends StatelessWidget {
   final double size;
 
   const MenuCard(
-      {Key? key, required this.icon, required this.title, required this.onTap, required this.size})
+      {Key? key,
+      required this.icon,
+      required this.title,
+      required this.onTap,
+      required this.size})
       : super(key: key);
 
   @override

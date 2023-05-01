@@ -85,10 +85,10 @@ class TotalPage extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 10,
+          height: 30,
         ),
         SizedBox(
-          width: 400,
+          width: 445,
           child: TextField(
             controller: notesController,
             style: const TextStyle(fontSize: 20, color: grey),
@@ -102,7 +102,7 @@ class TotalPage extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 50,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +127,8 @@ class TotalPage extends StatelessWidget {
             ),
             InkWell(
               onTap: () async {
-                final email = await sendEmail(controller.value.text, notesController.value.text);
+                final email = await sendEmail(
+                    controller.value.text, notesController.value.text);
                 if (email) {
                   Navigator.pushNamed(context, '/goodbye');
                 } else {
@@ -169,7 +170,8 @@ class TotalPage extends StatelessWidget {
   OutlineInputBorder _getBorder(bool isCorrectUser) {
     if (isCorrectUser) {
       return OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide.none);
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide.none);
     } else {
       return OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -178,7 +180,8 @@ class TotalPage extends StatelessWidget {
   }
 
   Widget _buildActiveButton(String text) {
-    final stringPrice = (isRegularShipping) ? '+$shippingPrice€' : '-$shippingPrice€';
+    final stringPrice =
+        (isRegularShipping) ? '+$shippingPrice€' : '-$shippingPrice€';
 
     final button = Container(
       decoration: BoxDecoration(

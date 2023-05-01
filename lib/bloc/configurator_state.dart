@@ -18,7 +18,7 @@ class ConfiguratorState {
 
   static ConfiguratorState initialState = ConfiguratorState(
     actionFigureModel: ActionFigureModel(fullBody: 0, paintings: 0, prints: 0),
-    clothingModel: ClothingModel(),
+    clothingModel: ClothingModel(name: 'name', price: 1),
     headModel: HeadModel(prints: 0, paintings: 0, fullBody: 0),
     page: PageEnum.actionFigure,
   );

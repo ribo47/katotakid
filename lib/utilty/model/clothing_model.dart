@@ -1,9 +1,22 @@
 class ClothingModel {
-  final ClothingType? type;
+  final String name;
+  final double price;
 
   ClothingModel({
-    this.type,
+    required this.name,
+    required this.price,
   });
-}
 
-enum ClothingType { longSleeve, tShirt, jacket }
+  static List<ClothingModel> getClothingList(List<dynamic> list) {
+    final List<ClothingModel> defList = [];
+
+    for (var i = 0; i < list.length; i++) {
+      defList.add(ClothingModel(
+        name: list[i]['name'] as String,
+        price: list[i]['price'] as double,
+      ));
+    }
+
+    return defList;
+  }
+}

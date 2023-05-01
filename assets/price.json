@@ -4,5 +4,27 @@
   "actionFigure_paintings": 27.56,
   "head_fullBody": 60.63,
   "head_prints": 99,
-  "head_paintings": 27.56
+  "head_paintings": 27.56,
+  "clothing": [
+    {
+      "name": "long sleeve shirt",
+      "price": 17.45
+    },
+    {
+      "name": "tshirt",
+      "price": 12.92
+    },
+    {
+      "name": "jacket (full color)",
+      "price": 27.99
+    },
+    {
+      "name": "pants",
+      "price": 9.22
+    },
+    {
+      "name": "mask",
+      "price": 56.11
+    }
+  ]
 }
